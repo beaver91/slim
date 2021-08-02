@@ -1,0 +1,33 @@
+{
+  "name": "slim",
+  "version": "0.0.1",
+  "description": "Slim Javascript Library",
+  "keywords": [
+    "isString",
+    "isInt",
+    "isFloat",
+    "isUndefined",
+    "getDatetime",
+    "javscript",
+    "library",
+    "slim"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beaver91/slim.git"
+  },
+  "files": [
+    "dist",
+    "!dist/test"
+  ],
+  "author": "kingz <eyedroot@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
