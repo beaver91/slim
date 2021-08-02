@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLocaleDatetime = exports.isUndefined = exports.isFloat = exports.isInt = exports.isString = void 0;
+exports.isUndefined = exports.isFloat = exports.isInt = exports.isString = void 0;
 function isString(n) {
     return typeof n === 'string';
 }
@@ -17,7 +17,3 @@ function isUndefined(n) {
     return typeof n === 'undefined';
 }
 exports.isUndefined = isUndefined;
-function getLocaleDatetime() {
-    return new Date().toLocaleDateString('ko-KR', { "timeZone": 'UTC' });
-}
-exports.getLocaleDatetime = getLocaleDatetime;
