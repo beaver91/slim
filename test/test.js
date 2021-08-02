@@ -1,7 +1,7 @@
 'use strict'
 
 const expect = require('chai').expect
-const slim = require('../dist/slim.js')
+const slim = require('../dist/slimphp.js')
 
 describe('Slim Javascript Library Test', () => {
 
@@ -23,9 +23,21 @@ describe('Slim Javascript Library Test', () => {
     expect(result).to.equal(true)
   })
 
+  // isNull()
+  it('isNull() should return true', () => {
+    const result = slim.isNull(null)
+    expect(result).to.equal(true)
+  })
+
   // isUndefined()
   it('isUndefined() should return true', () => {
     const result = slim.isUndefined(undefined)
     expect(result).to.equal(true)
+  })
+
+  // datetime()
+  it('datetime() should match /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/', () => {
+    const result = slim.datetime()
+    expect(result).to.match(/\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/)
   })
 })

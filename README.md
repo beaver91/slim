@@ -1,23 +1,25 @@
-# beaver-slim
+# slimphp
 
-Slim JavaScript library (aka **slim**)
+A slim library that wraps functions used in **php**
+
+All functions call from snake_case to **pascalCase**.
 
 ## Installing
 Using npm:
 ```
-$ npm install beaver-slim
+$ npm install slimphp
 ```
 
 Using yarn:
 ```
-$ yarn add beaver-slim
+$ yarn add slimphp
 ```
 
 ## Functions
 
 - **isString**
   ```js
-  import { isString } from 'beaver-slim'
+  import { isString } from 'slimphp'
 
   let result = 'blah blah'
 
@@ -27,7 +29,7 @@ $ yarn add beaver-slim
   ```
 - **isInt**
   ```js
-  import { isInt } from 'beaver-slim'
+  import { isInt } from 'slimphp'
 
   let result = 10
 
@@ -35,9 +37,19 @@ $ yarn add beaver-slim
     console.log('good')
   }
   ```
+- **isNull**
+  ```js
+  import { isNull } from 'slimphp'
+
+  let result = null
+
+  if (isNull(result)) {
+    console.log('good')
+  }
+  ```
 - **isFloat**
   ```js
-  import { isFloat } from 'beaver-slim'
+  import { isFloat } from 'slimphp'
 
   let result = 3.14
 
@@ -47,11 +59,18 @@ $ yarn add beaver-slim
   ```
 - **isUndefined**
   ```js
-  import { isUndefined } from 'beaver-slim'
+  import { isUndefined } from 'slimphp'
 
   let result = undefined
-  
+
   if (isUndefined(result)) {
     console.log('good')
   }
+  ```
+- **datetime**
+  ```js
+  import { datetime } from 'slimphp'
+
+  let result = datetime() // is same `datetime('Y-m-d H:i:s')`
+  console.log(result) // output: 2021-08-02 21:57:45
   ```

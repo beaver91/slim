@@ -1,5 +1,5 @@
 {
-  "name": "beaver-slim",
+  "name": "slimphp",
   "version": "0.0.1",
   "description": "Slim Javascript Library",
   "keywords": [
@@ -7,9 +7,10 @@
     "isInt",
     "isFloat",
     "isUndefined",
-    "getDatetime",
+    "datetime",
     "javscript",
     "library",
+    "php",
     "slim"
   ],
   "main": "dist/index.js",
