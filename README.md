@@ -1,0 +1,2 @@
+# slim
+Slim JavaScript library
