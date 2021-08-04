@@ -93,6 +93,13 @@ $ yarn add slimphp
   console.log(result) // output: 1627989888 (unixtime)
   ```
 ### String
+- **sprintf**
+  ```js
+  import { sprintf } from 'slimphp'
+
+  const result = sprintf('Hello, %s%s', 'World', '!')
+  console.log(result) // output: Hello, World!
+  ```
 - **str_replace**
   ```js
   import { str_replace } from 'slimphp'
