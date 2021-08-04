@@ -79,6 +79,7 @@ export function date(format: string): string {
 const REG_SPECIFIER: RegExp = /%(?<digits>[\d\.]+?)?(?<type>s|d)/ig
 
 /**
+ * TODO implements
  * @link https://www.php.net/manual/en/function.sprintf.php
  */
 export function sprintf(format: string, ...args: any[]): string {
@@ -91,9 +92,12 @@ export function sprintf(format: string, ...args: any[]): string {
   const result: string[] = []
 
   while (captured = REG_SPECIFIER.exec(format) !== null) {
-    switch (captured[2]) {
-      case 's':
+    switch (captured[0]) {
+      case '%s':
         format = format.substring(0, )
+        break
+      case '%d':
+        break
       default:
     }
   }
@@ -128,14 +132,22 @@ export function str_replace(
     subject = [subject as string]
   }
 
+
+  let passed: number = 0 // If passed, this will be set to the number of replacements performed.
+
   for (let indexSubject in (subject as string[])) {
     let result = subject[indexSubject]
 
     for (let indexSearch in (search as string[])) {
       result = result.replace(search[indexSearch], replace[indexSearch])
+      passed += 1
     }
 
     (subject as ArrayStringType)[indexSubject] = result
+  }
+
+  if (!is_null(count)) {
+    (count as TypeCounter).count = passed
   }
 
   return returnArray ? subject : subject[0]
