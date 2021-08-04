@@ -17,7 +17,7 @@
   "types": "dist/slimphp.d.ts",
   "scripts": {
     "build": "tsc --build",
-    "test": "tsc --build && mocha --reporter spec"
+    "test": "npm run build && mocha --reporter spec"
   },
   "repository": {
     "type": "git",
