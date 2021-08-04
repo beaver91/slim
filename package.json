@@ -13,8 +13,8 @@
     "php",
     "slim"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/slimphp.js",
+  "types": "dist/slimphp.d.ts",
   "scripts": {
     "build": "tsc --build",
     "test": "tsc --build && mocha --reporter spec"
