@@ -1,8 +1,6 @@
 # slimphp
 
-A slim library that wraps functions used in **php**
-
-All functions call from snake_case to **pascalCase**.
+A **slimphp** library that wraps functions used in **php**
 
 ## Installing
 Using npm:
@@ -17,60 +15,87 @@ $ yarn add slimphp
 
 ## Functions
 
-- **isString**
+- **is_array**
   ```js
-  import { isString } from 'slimphp'
+  import { is_array } from 'slimphp'
+
+  let result = []
+
+  if (is_array(result)) {
+    console.log('good')
+  }
+  ```
+- **is_string**
+  ```js
+  import { is_string } from 'slimphp'
 
   let result = 'blah blah'
 
-  if (isString(result)) {
+  if (is_string(result)) {
     console.log('good')
   }
   ```
-- **isInt**
+- **is_int**
   ```js
-  import { isInt } from 'slimphp'
+  import { is_int } from 'slimphp'
 
   let result = 10
 
-  if (isInt(result)) {
+  if (is_int(result)) {
     console.log('good')
   }
   ```
-- **isNull**
+- **is_null**
   ```js
-  import { isNull } from 'slimphp'
+  import { is_null } from 'slimphp'
 
   let result = null
 
-  if (isNull(result)) {
+  if (is_null(result)) {
     console.log('good')
   }
   ```
-- **isFloat**
+- **is_float**
   ```js
-  import { isFloat } from 'slimphp'
+  import { is_float } from 'slimphp'
 
   let result = 3.14
 
-  if (isFloat(result)) {
+  if (is_float(result)) {
     console.log('good')
   }
   ```
-- **isUndefined**
+- **is_undefined**
   ```js
-  import { isUndefined } from 'slimphp'
+  import { is_undefined } from 'slimphp'
 
   let result = undefined
 
-  if (isUndefined(result)) {
+  if (is_undefined(result)) {
     console.log('good')
   }
   ```
-- **datetime**
+- **date**
   ```js
-  import { datetime } from 'slimphp'
+  import { date } from 'slimphp'
 
-  let result = datetime() // is same `datetime('Y-m-d H:i:s')`
+  let result = date('Y-m-d H:i:s')
   console.log(result) // output: 2021-08-02 21:57:45
+  ```
+- **str_replace**
+  ```js
+  import { str_replace } from 'slimphp'
+
+  const result1 = str_replace('Bye', 'Hello', 'Bye, World!')
+  console.log(result1) // output: Hello, World!
+
+  const result2 = str_replace(['a', 'b'], ['A', 'B'], ['a', 'b'])
+  console.log(result2) // output: ['A', 'B']
+  ```
+- **time**
+  ```js
+  import { time } from 'slimphp'
+
+  let result = time()
+  console.log(result) // output: 1627989888 (unixtime)
   ```
