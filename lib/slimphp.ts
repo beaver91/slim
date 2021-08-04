@@ -1,5 +1,5 @@
 import FatalError from './FatalError'
-import { TypeCounter, ArrayStringType } from './types'
+import { TypeCounter, ArrayStringType, ArrayNumberType } from './types'
 
 export function is_array(n: any): boolean {
   return Array.isArray(n)
@@ -71,12 +71,20 @@ export function date(format: string): string {
 }
 
 /**
+ * @Link https://www.php.net/manual/en/function.time.php
+ */
+export function time(): number {
+  return Math.floor(Date.now() / 1000)
+}
+
+/**
+ * TODO digits
  * `s`: string
  * `d`: integer
  * TODO `f`: float
  * TODO `x`: hex
  */
-const REG_SPECIFIER: RegExp = /%(?<digits>[\d\.]+?)?(?<type>s|d)/ig
+const REG_SPECIFIER: RegExp = /%(?<digits>[\d\.]+?)?(?<type>s|d)/
 
 /**
  * TODO implements
@@ -88,18 +96,24 @@ export function sprintf(format: string, ...args: any[]): string {
     return format
   }
 
-  let captured: any = null
-  const result: string[] = []
+  let captured: any
+  let loop: number = 0
 
-  while (captured = REG_SPECIFIER.exec(format) !== null) {
+  while (captured = REG_SPECIFIER.exec(format)) {
+    let replace: any = loop < args.length ? args[loop] : ''
+    const length = captured.length
+
     switch (captured[0]) {
       case '%s':
-        format = format.substring(0, )
+        format = substr_replace(format, String(replace), captured.index, length)
         break
       case '%d':
+        format = substr_replace(format, Number(replace).toString(), captured.index, length)
         break
       default:
     }
+
+    loop += 1
   }
 
   return format
@@ -114,7 +128,7 @@ export function str_replace(
   subject: ArrayStringType | string,
   count: TypeCounter | null = null,
 ): ArrayStringType | string {
-  if (!is_array(search) && is_array(replace)) {
+  if (typeof search !== typeof replace) {
     throw new FatalError('Argument #2 (replace) must be of type string when argument #1 (search) is a string')
   }
 
@@ -135,10 +149,10 @@ export function str_replace(
 
   let passed: number = 0 // If passed, this will be set to the number of replacements performed.
 
-  for (let indexSubject in (subject as string[])) {
+  for (let indexSubject in subject as ArrayStringType) {
     let result = subject[indexSubject]
 
-    for (let indexSearch in (search as string[])) {
+    for (let indexSearch in search as ArrayStringType) {
       result = result.replace(search[indexSearch], replace[indexSearch])
       passed += 1
     }
@@ -153,9 +167,16 @@ export function str_replace(
   return returnArray ? subject : subject[0]
 }
 
-/**
- * @Link https://www.php.net/manual/en/function.time.php
- */
-export function time(): number {
-  return Math.floor(Date.now() / 1000)
+export function substr_replace(
+  string: string,
+  replace: string,
+  offset: number,
+  length: number | null = null,
+): string
+{
+  return string.substr(0, offset)
+        + replace
+        + string.substr(
+            offset + ((length != null ? length : replace.length) - 1)
+          )
 }

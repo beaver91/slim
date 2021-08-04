@@ -36,15 +36,18 @@ describe('Type Functions', () => {
   })
 })
 
-describe('String Functions', () => {
+describe('Date Functions', () => {
   it('date() should match /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/', () => {
     const result = slim.date('Y-m-d H:i:s')
     expect(result).to.match(/\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/)
   })
+})
 
-  // it('sprintf() should match', () => {
-
-  // })
+describe('String Functions', () => {
+  it('sprintf() should match Hello, World!', () => {
+    const result = slim.sprintf('Hello, %s%s', 'World', '!')
+    expect(result).to.equal('Hello, World!')
+  })
 
   it('str_replace() should match Hello, World', () => {
     const result = slim.str_replace('Bye', 'Hello', 'Bye, World!')
@@ -54,5 +57,15 @@ describe('String Functions', () => {
   it('str_replace() should match [A, B]', () => {
     const result = slim.str_replace(['a', 'b'], ['A', 'B'], ['a', 'b'])
     expect(result).to.deep.equal(['A', 'B'])
+  })
+
+  it('substr_replace() should match Hello, beaver', () => {
+    const result = slim.substr_replace('Hello, World', 'beaver', 7)
+    expect(result).to.equal('Hello, beaver')
+  })
+
+  it('substr_replace() should match Hello, beaver, nice!', () => {
+    const result = slim.substr_replace('Hello, World, nice!', 'beaver', 7)
+    expect(result).to.equal('Hello, beaver, nice!')
   })
 })

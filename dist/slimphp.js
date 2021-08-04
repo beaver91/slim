@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.time = exports.str_replace = exports.sprintf = exports.date = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
+exports.substr_replace = exports.str_replace = exports.sprintf = exports.time = exports.date = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
 var FatalError_1 = __importDefault(require("./FatalError"));
 function is_array(n) {
     return Array.isArray(n);
@@ -70,13 +70,22 @@ function date(format) {
 }
 exports.date = date;
 /**
+ * @Link https://www.php.net/manual/en/function.time.php
+ */
+function time() {
+    return Math.floor(Date.now() / 1000);
+}
+exports.time = time;
+/**
+ * TODO digits
  * `s`: string
  * `d`: integer
  * TODO `f`: float
  * TODO `x`: hex
  */
-var REG_SPECIFIER = /%(?<digits>[\d\.]+?)?(?<type>s|d)/ig;
+var REG_SPECIFIER = /%(?<digits>[\d\.]+?)?(?<type>s|d)/;
 /**
+ * TODO implements
  * @link https://www.php.net/manual/en/function.sprintf.php
  */
 function sprintf(format) {
@@ -88,14 +97,21 @@ function sprintf(format) {
     if (REG_SPECIFIER.test(format) === false) {
         return format;
     }
-    var captured = null;
-    var result = [];
-    while (captured = REG_SPECIFIER.exec(format) !== null) {
-        switch (captured[2]) {
-            case 's':
-                format = format.substring(0);
+    var captured;
+    var loop = 0;
+    while (captured = REG_SPECIFIER.exec(format)) {
+        var replace = loop < args.length ? args[loop] : '';
+        var length_1 = captured.length;
+        switch (captured[0]) {
+            case '%s':
+                format = substr_replace(format, String(replace), captured.index, length_1);
+                break;
+            case '%d':
+                format = substr_replace(format, Number(replace).toString(), captured.index, length_1);
+                break;
             default:
         }
+        loop += 1;
     }
     return format;
 }
@@ -105,7 +121,7 @@ exports.sprintf = sprintf;
  **/
 function str_replace(search, replace, subject, count) {
     if (count === void 0) { count = null; }
-    if (!is_array(search) && is_array(replace)) {
+    if (typeof search !== typeof replace) {
         throw new FatalError_1.default('Argument #2 (replace) must be of type string when argument #1 (search) is a string');
     }
     var returnArray = is_array(subject);
@@ -118,20 +134,25 @@ function str_replace(search, replace, subject, count) {
     if (!is_array(subject)) {
         subject = [subject];
     }
+    var passed = 0; // If passed, this will be set to the number of replacements performed.
     for (var indexSubject in subject) {
         var result = subject[indexSubject];
         for (var indexSearch in search) {
             result = result.replace(search[indexSearch], replace[indexSearch]);
+            passed += 1;
         }
         subject[indexSubject] = result;
+    }
+    if (!is_null(count)) {
+        count.count = passed;
     }
     return returnArray ? subject : subject[0];
 }
 exports.str_replace = str_replace;
-/**
- * @Link https://www.php.net/manual/en/function.time.php
- */
-function time() {
-    return Math.floor(Date.now() / 1000);
+function substr_replace(string, replace, offset, length) {
+    if (length === void 0) { length = null; }
+    return string.substr(0, offset)
+        + replace
+        + string.substr(offset + ((length != null ? length : replace.length) - 1));
 }
-exports.time = time;
+exports.substr_replace = substr_replace;

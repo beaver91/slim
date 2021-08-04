@@ -15,6 +15,7 @@ $ yarn add slimphp
 
 ## Functions
 
+### Type Check
 - **is_array**
   ```js
   import { is_array } from 'slimphp'
@@ -75,6 +76,8 @@ $ yarn add slimphp
     console.log('good')
   }
   ```
+
+### Date
 - **date**
   ```js
   import { date } from 'slimphp'
@@ -82,6 +85,14 @@ $ yarn add slimphp
   let result = date('Y-m-d H:i:s')
   console.log(result) // output: 2021-08-02 21:57:45
   ```
+- **time**
+  ```js
+  import { time } from 'slimphp'
+
+  let result = time()
+  console.log(result) // output: 1627989888 (unixtime)
+  ```
+### String
 - **str_replace**
   ```js
   import { str_replace } from 'slimphp'
@@ -92,10 +103,13 @@ $ yarn add slimphp
   const result2 = str_replace(['a', 'b'], ['A', 'B'], ['a', 'b'])
   console.log(result2) // output: ['A', 'B']
   ```
-- **time**
+- **substr_replace**
   ```js
-  import { time } from 'slimphp'
+  import { substr_replace } from 'slimphp'
 
-  let result = time()
-  console.log(result) // output: 1627989888 (unixtime)
+  const result1 = substr_replace('Hello, World', 'beaver', 7)
+  console.log(result1) // output: Hello, beaver
+
+  const result2 = substr_replace('Hello, World, nice!', 'beaver', 7)
+  console.log(result2) // output: Hello, beaver, nice!
   ```
