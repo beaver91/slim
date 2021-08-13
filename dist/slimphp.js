@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.substr_replace = exports.str_replace = exports.sprintf = exports.time = exports.date = exports.is_function = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
+exports.substr_replace = exports.str_replace = exports.sprintf = exports.time = exports.date = exports.is_callable = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
 var FatalError_1 = __importDefault(require("./FatalError"));
 function is_array(n) {
     return Array.isArray(n);
@@ -30,10 +30,10 @@ function is_undefined(n) {
     return typeof n === 'undefined';
 }
 exports.is_undefined = is_undefined;
-function is_function(n) {
+function is_callable(n) {
     return typeof (n) === 'function';
 }
-exports.is_function = is_function;
+exports.is_callable = is_callable;
 /**
  * @link https://www.php.net/manual/en/function.date
  */
