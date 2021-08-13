@@ -26,7 +26,7 @@ export function is_undefined(n: any): boolean {
   return typeof n === 'undefined'
 }
 
-export function is_function(n: any): boolean {
+export function is_callable(n: any): boolean {
   return typeof (n) === 'function'
 }
 

@@ -35,12 +35,12 @@ describe('Type Functions', () => {
     expect(result).to.equal(true)
   })
 
-  it('is_function() should return true', () => {
+  it('is_callable() should return true', () => {
     let anonymousFunction = function () {
       console.log('Hello, World')
     }
 
-    const result = slim.is_function(anonymousFunction)
+    const result = slim.is_callable(anonymousFunction)
     expect(result).to.equal(true)
   })
 })
