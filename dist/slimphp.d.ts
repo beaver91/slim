@@ -6,6 +6,7 @@ export declare function is_float(n: number): boolean;
 export declare function is_null(n: any): boolean;
 /** only js */
 export declare function is_undefined(n: any): boolean;
+export declare function is_function(n: any): boolean;
 /**
  * @link https://www.php.net/manual/en/function.date
  */

@@ -26,6 +26,10 @@ export function is_undefined(n: any): boolean {
   return typeof n === 'undefined'
 }
 
+export function is_function(n: any): boolean {
+  return typeof (n) === 'function'
+}
+
 /**
  * @link https://www.php.net/manual/en/function.date
  */

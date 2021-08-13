@@ -34,6 +34,15 @@ describe('Type Functions', () => {
     const result = slim.is_undefined(undefined)
     expect(result).to.equal(true)
   })
+
+  it('is_function() should return true', () => {
+    let anonymousFunction = function () {
+      console.log('Hello, World')
+    }
+
+    const result = slim.is_function(anonymousFunction)
+    expect(result).to.equal(true)
+  })
 })
 
 describe('Date Functions', () => {

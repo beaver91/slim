@@ -76,6 +76,14 @@ $ yarn add slimphp
     console.log('good')
   }
   ```
+- **is_callable**
+  ```js
+  import { is_callable } from 'slimphp'
+
+  if (is_callable(() => {})) {
+    console.log('good')
+  }
+  ```
 
 ### Date
 - **date**
