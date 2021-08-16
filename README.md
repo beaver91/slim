@@ -17,7 +17,7 @@ $ yarn add slimphp
 
 ### Type Check
 - **is_array**
-  ```js
+  ```ts
   import { is_array } from 'slimphp'
 
   let result = []
@@ -27,7 +27,7 @@ $ yarn add slimphp
   }
   ```
 - **is_string**
-  ```js
+  ```ts
   import { is_string } from 'slimphp'
 
   let result = 'blah blah'
@@ -37,7 +37,7 @@ $ yarn add slimphp
   }
   ```
 - **is_int**
-  ```js
+  ```ts
   import { is_int } from 'slimphp'
 
   let result = 10
@@ -47,7 +47,7 @@ $ yarn add slimphp
   }
   ```
 - **is_null**
-  ```js
+  ```ts
   import { is_null } from 'slimphp'
 
   let result = null
@@ -57,7 +57,7 @@ $ yarn add slimphp
   }
   ```
 - **is_float**
-  ```js
+  ```ts
   import { is_float } from 'slimphp'
 
   let result = 3.14
@@ -67,7 +67,7 @@ $ yarn add slimphp
   }
   ```
 - **is_undefined**
-  ```js
+  ```ts
   import { is_undefined } from 'slimphp'
 
   let result = undefined
@@ -77,7 +77,7 @@ $ yarn add slimphp
   }
   ```
 - **is_callable**
-  ```js
+  ```ts
   import { is_callable } from 'slimphp'
 
   if (is_callable(() => {})) {
@@ -85,16 +85,25 @@ $ yarn add slimphp
   }
   ```
 
+### Array
+- **array_unique**
+  ```ts
+  import { array_unique } from 'slimphp'
+
+  let result = array_unique([1, 1, 2, 2, 3, 3])
+  console.log(result) // output: [1, 2, 3]
+  ```
+
 ### Date
 - **date**
-  ```js
+  ```ts
   import { date } from 'slimphp'
 
   let result = date('Y-m-d H:i:s')
   console.log(result) // output: 2021-08-02 21:57:45
   ```
 - **time**
-  ```js
+  ```ts
   import { time } from 'slimphp'
 
   let result = time()
@@ -102,14 +111,14 @@ $ yarn add slimphp
   ```
 ### String
 - **sprintf**
-  ```js
+  ```ts
   import { sprintf } from 'slimphp'
 
   const result = sprintf('Hello, %s%s', 'World', '!')
   console.log(result) // output: Hello, World!
   ```
 - **str_replace**
-  ```js
+  ```ts
   import { str_replace } from 'slimphp'
 
   const result1 = str_replace('Bye', 'Hello', 'Bye, World!')
@@ -119,7 +128,7 @@ $ yarn add slimphp
   console.log(result2) // output: ['A', 'B']
   ```
 - **substr_replace**
-  ```js
+  ```ts
   import { substr_replace } from 'slimphp'
 
   const result1 = substr_replace('Hello, World', 'beaver', 7)
