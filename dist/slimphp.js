@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.substr_replace = exports.str_replace = exports.sprintf = exports.time = exports.date = exports.is_callable = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
-var FatalError_1 = __importDefault(require("./FatalError"));
+exports.substr_replace = exports.str_replace = exports.sprintf = exports.time = exports.date = exports.array_unique = exports.is_callable = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
+const FatalError_1 = __importDefault(require("./FatalError"));
 function is_array(n) {
     return Array.isArray(n);
 }
@@ -34,15 +34,19 @@ function is_callable(n) {
     return typeof (n) === 'function';
 }
 exports.is_callable = is_callable;
+function array_unique(n) {
+    return [...new Set(n)];
+}
+exports.array_unique = array_unique;
 /**
  * @link https://www.php.net/manual/en/function.date
  */
 function date(format) {
-    var dater = new Date();
-    var splitted = format.split('');
-    var result = [];
-    splitted.forEach(function (char) {
-        var value = '';
+    const dater = new Date();
+    const splitted = format.split('');
+    let result = [];
+    splitted.forEach(char => {
+        let value = '';
         switch (char) {
             case 'Y':
                 value = dater.getFullYear().toString();
@@ -51,19 +55,19 @@ function date(format) {
                 value = dater.getFullYear().toString().slice(-2);
                 break;
             case 'm':
-                value = ("0" + (dater.getMonth() + 1)).slice(-2);
+                value = `0${dater.getMonth() + 1}`.slice(-2);
                 break;
             case 'd':
-                value = ("0" + dater.getDate()).slice(-2);
+                value = `0${dater.getDate()}`.slice(-2);
                 break;
             case 'H':
-                value = ("0" + dater.getHours()).slice(-2);
+                value = `0${dater.getHours()}`.slice(-2);
                 break;
             case 'i':
-                value = ("0" + dater.getMinutes()).slice(-2);
+                value = `0${dater.getMinutes()}`.slice(-2);
                 break;
             case 's':
-                value = ("0" + dater.getSeconds()).slice(-2);
+                value = `0${dater.getSeconds()}`.slice(-2);
                 break;
             default:
                 value = char;
@@ -87,31 +91,27 @@ exports.time = time;
  * TODO `f`: float
  * TODO `x`: hex
  */
-var REG_SPECIFIER = /%(?<digits>[\d\.]+?)?(?<type>s|d)/;
+const REG_SPECIFIER = /%(?<digits>[\d\.]+?)?(?<type>s|d)/;
 /**
  * TODO implements
  * @link https://www.php.net/manual/en/function.sprintf.php
  */
-function sprintf(format) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
+function sprintf(format, ...args) {
     // check Specifier
     if (REG_SPECIFIER.test(format) === false) {
         return format;
     }
-    var captured;
-    var loop = 0;
+    let captured;
+    let loop = 0;
     while (captured = REG_SPECIFIER.exec(format)) {
-        var replace = loop < args.length ? args[loop] : '';
-        var length_1 = captured.length;
+        let replace = loop < args.length ? args[loop] : '';
+        const length = captured.length;
         switch (captured[0]) {
             case '%s':
-                format = substr_replace(format, String(replace), captured.index, length_1);
+                format = substr_replace(format, String(replace), captured.index, length);
                 break;
             case '%d':
-                format = substr_replace(format, Number(replace).toString(), captured.index, length_1);
+                format = substr_replace(format, Number(replace).toString(), captured.index, length);
                 break;
             default:
         }
@@ -123,12 +123,11 @@ exports.sprintf = sprintf;
 /**
  * @link https://www.php.net/manual/en/function.str-replace.php
  **/
-function str_replace(search, replace, subject, count) {
-    if (count === void 0) { count = null; }
+function str_replace(search, replace, subject, count = null) {
     if (typeof search !== typeof replace) {
         throw new FatalError_1.default('Argument #2 (replace) must be of type string when argument #1 (search) is a string');
     }
-    var returnArray = is_array(subject);
+    const returnArray = is_array(subject);
     if (!is_array(search)) {
         search = [search];
     }
@@ -138,10 +137,10 @@ function str_replace(search, replace, subject, count) {
     if (!is_array(subject)) {
         subject = [subject];
     }
-    var passed = 0; // If passed, this will be set to the number of replacements performed.
-    for (var indexSubject in subject) {
-        var result = subject[indexSubject];
-        for (var indexSearch in search) {
+    let passed = 0; // If passed, this will be set to the number of replacements performed.
+    for (let indexSubject in subject) {
+        let result = subject[indexSubject];
+        for (let indexSearch in search) {
             result = result.replace(search[indexSearch], replace[indexSearch]);
             passed += 1;
         }
@@ -153,8 +152,7 @@ function str_replace(search, replace, subject, count) {
     return returnArray ? subject : subject[0];
 }
 exports.str_replace = str_replace;
-function substr_replace(string, replace, offset, length) {
-    if (length === void 0) { length = null; }
+function substr_replace(string, replace, offset, length = null) {
     return string.substr(0, offset)
         + replace
         + string.substr(offset + ((length != null ? length : replace.length) - 1));

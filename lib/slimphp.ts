@@ -30,6 +30,10 @@ export function is_callable(n: any): boolean {
   return typeof (n) === 'function'
 }
 
+export function array_unique(n: any[]): any[] {
+  return [...new Set(n)];
+}
+
 /**
  * @link https://www.php.net/manual/en/function.date
  */

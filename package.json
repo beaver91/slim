@@ -1,6 +1,6 @@
 {
   "name": "slimphp",
-  "version": "0.2.1-dev",
+  "version": "0.3.1-dev",
   "description": "Slim Javascript Library",
   "keywords": [
     "is_string",
@@ -9,6 +9,7 @@
     "is_undefined",
     "is_null",
     "is_callable",
+    "array_unique",
     "sprintf",
     "str_replace",
     "substr_replace",

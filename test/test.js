@@ -45,6 +45,13 @@ describe('Type Functions', () => {
   })
 })
 
+describe('Array Functions', () => {
+  it('array_unique should match unique array', () => {
+    const result = slim.array_unique([1, 1, 2, 2, 3, 3])
+    expect(result).to.deep.equal([1, 2, 3])
+  })
+})
+
 describe('Date Functions', () => {
   it('date() should match /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/', () => {
     const result = slim.date('Y-m-d H:i:s')

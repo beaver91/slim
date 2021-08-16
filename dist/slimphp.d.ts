@@ -7,6 +7,7 @@ export declare function is_null(n: any): boolean;
 /** only js */
 export declare function is_undefined(n: any): boolean;
 export declare function is_callable(n: any): boolean;
+export declare function array_unique(n: any[]): any[];
 /**
  * @link https://www.php.net/manual/en/function.date
  */
