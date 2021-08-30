@@ -1,6 +1,6 @@
 {
   "name": "slimphp",
-  "version": "0.3.1-dev",
+  "version": "0.4.1-dev",
   "description": "Slim Javascript Library",
   "keywords": [
     "is_string",
@@ -14,6 +14,8 @@
     "str_replace",
     "substr_replace",
     "datetime",
+    "date",
+    "sleep",
     "javscript",
     "library",
     "php",

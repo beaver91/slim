@@ -86,6 +86,17 @@ export function time(): number {
 }
 
 /**
+ * sleep
+ * @param seconds
+ * @returns
+ */
+export function sleep(seconds: number) {
+  return new Promise(resolve => {
+    setTimeout(resolve, seconds * 1000)
+  })
+}
+
+/**
  * TODO digits
  * `s`: string
  * `d`: integer

@@ -109,6 +109,14 @@ $ yarn add slimphp
   let result = time()
   console.log(result) // output: 1627989888 (unixtime)
   ```
+- **sleep**
+  ```ts
+  import { sleep } from 'slimphp'
+  
+  (async function () {
+    await sleep(5) // wait 5 seconds
+  })()
+  ```
 ### String
 - **sprintf**
   ```ts
