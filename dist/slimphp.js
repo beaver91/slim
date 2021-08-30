@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.substr_replace = exports.str_replace = exports.sprintf = exports.time = exports.date = exports.array_unique = exports.is_callable = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
+exports.substr_replace = exports.str_replace = exports.sprintf = exports.sleep = exports.time = exports.date = exports.array_unique = exports.is_callable = exports.is_undefined = exports.is_null = exports.is_float = exports.is_int = exports.is_string = exports.is_array = void 0;
 const FatalError_1 = __importDefault(require("./FatalError"));
 function is_array(n) {
     return Array.isArray(n);
@@ -84,6 +84,17 @@ function time() {
     return Math.floor(Date.now() / 1000);
 }
 exports.time = time;
+/**
+ * sleep
+ * @param seconds
+ * @returns
+ */
+function sleep(seconds) {
+    return new Promise(resolve => {
+        setTimeout(resolve, seconds * 1000);
+    });
+}
+exports.sleep = sleep;
 /**
  * TODO digits
  * `s`: string

@@ -17,6 +17,12 @@ export declare function date(format: string): string;
  */
 export declare function time(): number;
 /**
+ * sleep
+ * @param seconds
+ * @returns
+ */
+export declare function sleep(seconds: number): Promise<unknown>;
+/**
  * TODO implements
  * @link https://www.php.net/manual/en/function.sprintf.php
  */
